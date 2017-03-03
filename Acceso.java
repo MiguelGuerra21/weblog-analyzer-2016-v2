@@ -1,49 +1,69 @@
 import java.util.Scanner;
 public class Acceso
 {
-    private int año;
+    private String ip;
+    private String año;
     private int mes;
     private int dia;
     private int hora;
-    private int minutos;
+    private String minutos;
+    private String http;
+    private int codigo;
     private Scanner sc;
 
-    public Acceso(String fechaAcceso)
+    public Acceso(String informacionAcceso)
     {
-        String fechaIntroducida = fechaAcceso;
-        sc = new Scanner(fechaIntroducida);
+        String infoIntroducida = informacionAcceso;
+        sc = new Scanner(infoIntroducida);
         if(sc.hasNext()){
             String[] fechaAGuardar = sc.nextLine().split(" ");
-            año = Integer.parseInt(fechaAGuardar[0]);
-            mes = Integer.parseInt(fechaAGuardar[1]);
-            dia = Integer.parseInt(fechaAGuardar[2]);
-            hora = Integer.parseInt(fechaAGuardar[3]);
-            minutos = Integer.parseInt(fechaAGuardar[4]);
+            ip = (fechaAGuardar[0]);
+            año = (fechaAGuardar[1]);
+            mes = Integer.parseInt(fechaAGuardar[2]);
+            dia = Integer.parseInt(fechaAGuardar[3]);
+            hora = Integer.parseInt(fechaAGuardar[4]);
+            minutos =(fechaAGuardar[5]);
+            http =(fechaAGuardar[6]);
+            codigo = Integer.parseInt(fechaAGuardar[7]);
         }
     }
 
-    public int getAno() 
+    public String getIp() 
+    {
+        return ip;
+    }
+
+    public String getAño()
     {
         return año;
     }
-
+    
     public int getMes()
     {
         return mes;
     }
-
+    
     public int getDia()
     {
         return dia;
     }
-
+    
     public int getHora()
     {
         return hora;
     }
-
-    public int getMinutos()
-    {
+    
+    public String getMinutos(){
         return minutos;
+    }
+
+    public String getArchivo()
+    {
+        return http;
+    }
+
+    public int getCodigo()
+    {
+        return codigo;
     }
 }
