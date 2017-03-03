@@ -2,11 +2,11 @@ import java.util.Scanner;
 public class Acceso
 {
     private String ip;
-    private String año;
+    private int año;
     private int mes;
     private int dia;
     private int hora;
-    private String minutos;
+    private int minutos;
     private String http;
     private int codigo;
     private Scanner sc;
@@ -18,11 +18,11 @@ public class Acceso
         if(sc.hasNext()){
             String[] fechaAGuardar = sc.nextLine().split(" ");
             ip = (fechaAGuardar[0]);
-            año = (fechaAGuardar[1]);
+            año = Integer.parseInt(fechaAGuardar[1].substring(1,5));
             mes = Integer.parseInt(fechaAGuardar[2]);
             dia = Integer.parseInt(fechaAGuardar[3]);
             hora = Integer.parseInt(fechaAGuardar[4]);
-            minutos =(fechaAGuardar[5]);
+            minutos =Integer.parseInt(fechaAGuardar[5].substring(0,2));
             http =(fechaAGuardar[6]);
             codigo = Integer.parseInt(fechaAGuardar[7]);
         }
@@ -33,7 +33,7 @@ public class Acceso
         return ip;
     }
 
-    public String getAño()
+    public int getAño()
     {
         return año;
     }
@@ -53,7 +53,7 @@ public class Acceso
         return hora;
     }
     
-    public String getMinutos(){
+    public int getMinutos(){
         return minutos;
     }
 
