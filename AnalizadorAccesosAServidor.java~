@@ -19,10 +19,9 @@ public class AnalizadorAccesosAServidor
         File archivoALeer = new File(archivo);
         try {
             Scanner sc = new Scanner(archivoALeer);
+            String lineaLeida = sc.nextLine();
             while (sc.hasNextLine()) {
-                String lineaLeida = sc.nextLine();
-                
-                Acceso accesoActual = new Acceso(lineaLeida);
+                Acceso accesoActual = new Acceso(lineaLeida);               
                 
                 accesos.add(accesoActual);
             }
