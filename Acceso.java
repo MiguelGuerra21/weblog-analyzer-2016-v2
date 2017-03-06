@@ -57,7 +57,7 @@ public class Acceso
         return minutos;
     }
 
-    public String getArchivo()
+    public String getPagina()
     {
         return http;
     }
