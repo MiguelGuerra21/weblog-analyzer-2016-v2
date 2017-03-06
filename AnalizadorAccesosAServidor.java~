@@ -7,11 +7,13 @@ public class AnalizadorAccesosAServidor
 {
     private ArrayList<Acceso> accesos;
     private HashMap<String , Integer> paginas;
+    private HashMap<String , Integer> clientes;
 
     public AnalizadorAccesosAServidor() 
     {
         accesos = new ArrayList<>();
         paginas = new HashMap<>();
+        clientes = new HashMap<>();
     }
 
     public void analizarArchivoDeLog(String archivo)
@@ -63,17 +65,18 @@ public class AnalizadorAccesosAServidor
 
     public String paginaWebMasSolicitada() 
     {
+        paginas.clear();                //cada vez que se inicia se resetea
         String cadenaAMostrar = null;
-        int paginaMasRepetida = -1;
-        for(Acceso accesoActual : accesos){
+        int paginaMasRepetida = -1;         //guarda el valor mas buscado de las paginas
+        for(Acceso accesoActual : accesos){         //hace un hashmap iniciando los valores diferentes a 0
             if(!paginas.containsKey(accesoActual.getPagina())){
                 paginas.put(accesoActual.getPagina() , 0);
             }
         }
-        for(Acceso acceso :accesos){
+        for(Acceso acceso :accesos){        //indica la cantidad de veces que una pagina es buscada
             paginas.put(acceso.getPagina() , paginas.get(acceso.getPagina()) + 1);
         }
-        for(String pagina : paginas.keySet()){
+        for(String pagina : paginas.keySet()){          //consigue la pagina que mayor valor tiene en el hashmap
             if(pagina != null && paginas.get(pagina) > paginaMasRepetida){
                 paginaMasRepetida = paginas.get(pagina);
                 cadenaAMostrar = pagina;
@@ -84,7 +87,26 @@ public class AnalizadorAccesosAServidor
 
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        clientes.clear();                //cada vez que se inicia se resetea
+        String cadenaAMostrar = null;
+        int ipMasRepetida = -1;         //guarda la ip mas repetida de las paginas
+        for(Acceso accesoActual : accesos){         //hace un hashmap iniciando los valores diferentes a 0
+            if(!clientes.containsKey(accesoActual.getIp())){
+                clientes.put(accesoActual.getIp() , 0);
+            }
+        }
+        for(Acceso acceso :accesos){        //indica la cantidad de veces que un usuario ha hecho un acceso
+            clientes.put(acceso.getIp() , clientes.get(acceso.getIp()) + 1);
+        }
+        for(String ip : clientes.keySet()){          //consigue el usuario con mas accesos en el hashmap
+            if(ip != null && clientes.get(ip) >= ipMasRepetida){
+                ipMasRepetida = clientes.get(ip);
+                cadenaAMostrar = ip;
+            }
+        }
+        System.out.println(clientes.KeySet());
+        System.out.println(clientes.values());
+        return cadenaAMostrar;
     }
-
+    
 }
